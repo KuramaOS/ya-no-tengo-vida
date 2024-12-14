@@ -1,0 +1,41 @@
+entity Empleado {
+  nombre String required,
+  apellido String required,
+  telefono String,
+  correo String required unique
+}
+
+entity Departamento {
+  nombre String required unique,
+  ubicacion String required,
+  presupuesto String required
+}
+
+entity Jefe {
+  nombre String required unique,
+  telefono String required
+}
+
+entity EmpleadoDepartamento {
+  idEmpleado String required,
+  idDepartamento String required
+}
+
+entity DepartamentoJefe {
+  idDepartamento String required,
+  idJefe String required
+}
+
+relationship ManyToOne {
+  EmpleadoDepartamento{empleado(nombre)} to Empleado,
+  EmpleadoDepartamento{departamento(nombre)} to Departamento
+}
+
+relationship ManyToOne {
+  DepartamentoJefe{departamento(nombre)} to Departamento,
+  DepartamentoJefe{jefe(nombre)} to Jefe
+}
+
+paginate Empleado, Departamento with infinite-scroll
+paginate EmpleadoDepartamento, DepartamentoJefe with pagination
+
