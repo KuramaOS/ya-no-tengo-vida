@@ -1,5 +1,7 @@
 {
-  "annotations": {},
+  "annotations": {
+    "changelogDate": "20241214160726"
+  },
   "applications": "*",
   "fields": [
     {
@@ -14,5 +16,6 @@
     }
   ],
   "name": "Jefe",
-  "relationships": []
+  "relationships": [],
+  "searchEngine": "no"
 }

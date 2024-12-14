@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity DepartamentoJefe.
+    -->
+    <changeSet id="20241214160724-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="departamento_id"
+                                 baseTableName="departamento_jefe"
+                                 constraintName="fk_departamento_jefe__departamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="departamento"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="jefe_id"
+                                 baseTableName="departamento_jefe"
+                                 constraintName="fk_departamento_jefe__jefe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jefe"
+                                 />
+    </changeSet>
+</databaseChangeLog>

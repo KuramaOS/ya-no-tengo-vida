@@ -1,5 +1,7 @@
 {
-  "annotations": {},
+  "annotations": {
+    "changelogDate": "20241214160724"
+  },
   "applications": "*",
   "fields": [
     {
@@ -30,5 +32,6 @@
       "relationshipSide": "left",
       "relationshipType": "many-to-one"
     }
-  ]
+  ],
+  "searchEngine": "no"
 }

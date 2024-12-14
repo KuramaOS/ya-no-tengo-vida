@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (departamentoJefe(); as departamentoJefeRef) {
+      <div>
+        <h2 data-cy="departamentoJefeDetailsHeading"><span>Departamento Jefe</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ departamentoJefeRef.id }}</span>
+          </dd>
+          <dt><span>Id Departamento</span></dt>
+          <dd>
+            <span>{{ departamentoJefeRef.idDepartamento }}</span>
+          </dd>
+          <dt><span>Id Jefe</span></dt>
+          <dd>
+            <span>{{ departamentoJefeRef.idJefe }}</span>
+          </dd>
+          <dt><span>Departamento</span></dt>
+          <dd>
+            @if (departamentoJefe()!.departamento) {
+              <div>
+                <a [routerLink]="['/departamento', departamentoJefe()!.departamento?.id, 'view']">{{
+                  departamentoJefeRef.departamento?.nombre
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Jefe</span></dt>
+          <dd>
+            @if (departamentoJefe()!.jefe) {
+              <div>
+                <a [routerLink]="['/jefe', departamentoJefe()!.jefe?.id, 'view']">{{ departamentoJefeRef.jefe?.nombre }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/departamento-jefe', departamentoJefeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

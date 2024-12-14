@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-departamento-jefe-heading" data-cy="DepartamentoJefeCreateUpdateHeading">Crear o editar Departamento Jefe</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let idDepartamentoRef = editForm.get('idDepartamento')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_idDepartamento">Id Departamento</label>
+          <input
+            type="text"
+            class="form-control"
+            name="idDepartamento"
+            id="field_idDepartamento"
+            data-cy="idDepartamento"
+            formControlName="idDepartamento"
+          />
+          @if (idDepartamentoRef.invalid && (idDepartamentoRef.dirty || idDepartamentoRef.touched)) {
+            <div>
+              @if (editForm.get('idDepartamento')?.errors?.required) {
+                <small class="form-text text-danger">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let idJefeRef = editForm.get('idJefe')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_idJefe">Id Jefe</label>
+          <input type="text" class="form-control" name="idJefe" id="field_idJefe" data-cy="idJefe" formControlName="idJefe" />
+          @if (idJefeRef.invalid && (idJefeRef.dirty || idJefeRef.touched)) {
+            <div>
+              @if (editForm.get('idJefe')?.errors?.required) {
+                <small class="form-text text-danger">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_departamento">Departamento</label>
+          <select
+            class="form-control"
+            id="field_departamento"
+            data-cy="departamento"
+            name="departamento"
+            formControlName="departamento"
+            [compareWith]="compareDepartamento"
+          >
+            <option [ngValue]="null"></option>
+            @for (departamentoOption of departamentosSharedCollection; track $index) {
+              <option [ngValue]="departamentoOption">{{ departamentoOption.nombre }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_jefe">Jefe</label>
+          <select class="form-control" id="field_jefe" data-cy="jefe" name="jefe" formControlName="jefe" [compareWith]="compareJefe">
+            <option [ngValue]="null"></option>
+            @for (jefeOption of jefesSharedCollection; track $index) {
+              <option [ngValue]="jefeOption">{{ jefeOption.nombre }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
